@@ -16,9 +16,10 @@ import javax.swing.JPanel;
  */
 public class Kostki extends javax.swing.JFrame {
 
-    long rzutów, sukcesów;
+    long rzutów/*, sukcesów*/, sum;
     // final double W = 0.598; // wartość teoretyczna wyniku
-    final double W = 0.402; // wartość teoretyczna wyniku
+    // final double W = 0.402; // wartość teoretyczna wyniku
+    final double W = 17.5; // wartość teoretyczna wyniku
     double wynik = 0;
     // oszacowanie wyniku
     Random r = new Random();
@@ -49,22 +50,26 @@ public class Kostki extends javax.swing.JFrame {
 // x – wylosowana liczba oczek //na kostce
             kostki[i].oczek = x; // przypisanie odpowiedniej liczby //oczek kostce
             kostki[i].repaint();
-            if (x == 3) {
+            /* if (x == 3) {
                 s++;
-            }
+            } */
+            sum += x;
 // zliczanie „szóstek”
         }
-        if (s == 0) {
+        /* if (s == 0) {
             sukcesów++;
             jButton1.setBackground(Color.green);
         } else {
             jButton1.setBackground(null);
-        }
-        wynik = (double) sukcesów / rzutów;
+        } */
+        
+        // wynik = (double) sukcesów / rzutów;
+        wynik = (double) sum / rzutów;
     }
     
     private void start() {
-        rzutów = sukcesów = 0;
+        // rzutów = sukcesów = 0;
+        sum = 0;
         jTable1.setValueAt(0, 0, 0);
         jTable1.setValueAt(0, 0, 1);
         jTable1.setValueAt(null, 0, 2);
@@ -106,6 +111,11 @@ public class Kostki extends javax.swing.JFrame {
         });
 
         jButton2.setText("Restart");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -165,9 +175,14 @@ public class Kostki extends javax.swing.JFrame {
         rzutów++;
         losowanie();
         jTable1.setValueAt(rzutów, 0, 0);
-        jTable1.setValueAt(sukcesów, 0, 1);
+        // jTable1.setValueAt(sukcesów, 0, 1);
+        jTable1.setValueAt(sum, 0, 1);
         jTable1.setValueAt(wynik, 0, 2);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        start();        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
