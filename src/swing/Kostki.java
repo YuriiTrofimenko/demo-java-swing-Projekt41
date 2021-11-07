@@ -17,7 +17,8 @@ import javax.swing.JPanel;
 public class Kostki extends javax.swing.JFrame {
 
     long rzutów, sukcesów;
-    final double W = 0.598; // wartość teoretyczna wyniku
+    // final double W = 0.598; // wartość teoretyczna wyniku
+    final double W = 0.402; // wartość teoretyczna wyniku
     double wynik = 0;
     // oszacowanie wyniku
     Random r = new Random();
@@ -48,12 +49,12 @@ public class Kostki extends javax.swing.JFrame {
 // x – wylosowana liczba oczek //na kostce
             kostki[i].oczek = x; // przypisanie odpowiedniej liczby //oczek kostce
             kostki[i].repaint();
-            if (x == 6) {
+            if (x == 3) {
                 s++;
             }
 // zliczanie „szóstek”
         }
-        if (s > 0) {
+        if (s == 0) {
             sukcesów++;
             jButton1.setBackground(Color.green);
         } else {
